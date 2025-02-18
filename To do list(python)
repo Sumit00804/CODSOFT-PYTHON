@@ -1,0 +1,61 @@
+# Simple To-Do List Program
+
+tasks = []  # List to store tasks
+
+def show_tasks():
+    """Show all tasks"""
+    if not tasks:
+        print("\nNo tasks added yet!")
+    else:
+        print("\nYour To-Do List:")
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
+
+def add_task():
+    """Add a new task"""
+    task = input("Enter task: ").strip()
+    if task:
+        tasks.append(task)
+        print("Task added!")
+    else:
+        print("Task cannot be empty!")
+
+def remove_task():
+    """Remove a task by number"""
+    show_tasks()
+    if tasks:
+        try:
+            num = int(input("Enter task number to remove: "))
+            if 1 <= num <= len(tasks):
+                removed = tasks.pop(num - 1)
+                print(f"Removed task: {removed}")
+            else:
+                print("Invalid number!")
+        except ValueError:
+            print("Please enter a valid number!")
+
+def main():
+    """Main function to run the program"""
+    while True:
+        print("\nOptions:")
+        print("1. Show Tasks")
+        print("2. Add Task")
+        print("3. Remove Task")
+        print("4. Exit")
+        
+        choice = input("Choose option (1-4): ").strip()
+        
+        if choice == "1":
+            show_tasks()
+        elif choice == "2":
+            add_task()
+        elif choice == "3":
+            remove_task()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice! Try again.")
+
+if __name__ == "__main__":
+    main()
